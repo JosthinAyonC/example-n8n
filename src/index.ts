@@ -1,6 +1,8 @@
+import ngrok from '@ngrok/ngrok';
 import dotenv from 'dotenv';
 import express from 'express';
 import fs from 'fs';
+import http from 'http';
 import path from 'path';
 
 import routes from './routes';
@@ -17,7 +19,7 @@ if (fs.existsSync(envFile)) {
 }
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = parseInt(process.env.PORT || '3000', 10);
 
 app.use(express.json());
 
@@ -28,6 +30,18 @@ app.get('/', (_req, res) => {
   res.send(`Ambiente actual: ${env}`);
 });
 
-app.listen(port, () => {
+const server = http.createServer(app);
+server.listen(port, async () => {
   console.log(`Servidor corriendo en http://localhost:${port}`);
+
+  try {
+    // Conectar Ngrok
+    const listener = await ngrok.connect({
+      addr: port,
+      authtoken: process.env.NGROK_AUTHTOKEN,
+    });
+    console.log(`🌍 Tu servidor está disponible públicamente en: ${listener.url()}`);
+  } catch (err) {
+    console.error('❌ Error al iniciar Ngrok:', err);
+  }
 });

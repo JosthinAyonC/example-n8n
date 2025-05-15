@@ -31,6 +31,7 @@ module.exports = tseslint.config(
       '@typescript-eslint/interface-name-prefix': 'off',
       '@typescript-eslint/explicit-function-return-type': 'off',
       '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-misused-promises': 'off',
       'sort-imports': [
         'warn',
         { ignoreCase: true, ignoreDeclarationSort: true },

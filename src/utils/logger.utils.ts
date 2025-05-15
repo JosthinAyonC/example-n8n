@@ -10,9 +10,17 @@ const formatDate = () => {
 };
 
 const logWithTimestamp = (type: 'log' | 'info' | 'warn' | 'error') => {
+  const emojiMap: Record<typeof type, string> = {
+    log: '📝',
+    info: 'ℹ️',
+    warn: '⚠️',
+    error: '❌',
+  };
+
   return (...args: unknown[]) => {
     const timestamp = formatDate();
-    originalConsole[type](`[${timestamp}] ${type.toUpperCase()}`, ...args);
+    const emoji = emojiMap[type];
+    originalConsole[type](`[${timestamp}] ${emoji} ${type.toUpperCase()}`, ...args);
   };
 };
 
