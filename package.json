@@ -1,0 +1,41 @@
+{
+  "name": "fast-nodejs-api",
+  "author": "Josthin Ayon",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --loader ts-node/esm src/index.ts",
+    "build": "cross-env NODE_ENV=production tsc",
+    "start": "node dist/index.js",
+    "lint": "prettier --write \"src/**/*.ts\" && eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "prepare": "if [ \"$NODE_ENV\" != \"production\" ]; then lefthook install; fi"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "fast-nodejs-api": "file:"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@eslint/js": "^9.26.0",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.2",
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.18",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "cross-env": "^7.0.3",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.4.0",
+    "lefthook": "^1.11.12",
+    "prettier": "^3.5.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.32.1"
+  }
+}
